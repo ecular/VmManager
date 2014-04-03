@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>images/new.png</file>
+        <file>images/system.png</file>
+        <file>images/exit.png</file>
+        <file>images/start.png</file>
+        <file>images/delete.png</file>
+        <file>images/shutdown.png</file>
+        <file>images/suspend.png</file>
+        <file>images/kill.png</file>
+        <file>images/refresh.png</file>
+        <file>images/setting.png</file>
+        <file>images/run_status.png</file>
+        <file>images/stop_status.png</file>
+        <file>images/suspend_status.png</file>
+    </qresource>
+</RCC>
