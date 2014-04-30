@@ -13,5 +13,9 @@
         <file>images/run_status.png</file>
         <file>images/stop_status.png</file>
         <file>images/suspend_status.png</file>
+        <file>images/terminal.png</file>
+        <file>images/firefox.png</file>
+        <file>images/input_keyboard.png</file>
+        <file>images/application.png</file>
     </qresource>
 </RCC>

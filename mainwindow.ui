@@ -74,6 +74,15 @@
     <property name="title">
      <string>&amp;VM</string>
     </property>
+    <widget class="QMenu" name="menu_Command">
+     <property name="title">
+      <string>&amp;Command</string>
+     </property>
+     <addaction name="actionStart_Terminal"/>
+     <addaction name="actionStart_Firefox"/>
+     <addaction name="separator"/>
+     <addaction name="actionInput"/>
+    </widget>
     <addaction name="action_New_VM"/>
     <addaction name="action_Delete_Vm"/>
     <addaction name="separator"/>
@@ -83,6 +92,8 @@
     <addaction name="action_Kill"/>
     <addaction name="separator"/>
     <addaction name="action_Setting"/>
+    <addaction name="separator"/>
+    <addaction name="menu_Command"/>
    </widget>
    <widget class="QMenu" name="menu_View">
     <property name="title">
@@ -193,7 +204,34 @@
      <normaloff>:/icon/images/setting.png</normaloff>:/icon/images/setting.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Setting</string>
+    <string>&amp;Setting ...</string>
+   </property>
+  </action>
+  <action name="actionStart_Terminal">
+   <property name="icon">
+    <iconset resource="iconImage.qrc">
+     <normaloff>:/icon/images/terminal.png</normaloff>:/icon/images/terminal.png</iconset>
+   </property>
+   <property name="text">
+    <string>Start Terminal</string>
+   </property>
+  </action>
+  <action name="actionStart_Firefox">
+   <property name="icon">
+    <iconset resource="iconImage.qrc">
+     <normaloff>:/icon/images/firefox.png</normaloff>:/icon/images/firefox.png</iconset>
+   </property>
+   <property name="text">
+    <string>Start Firefox</string>
+   </property>
+  </action>
+  <action name="actionInput">
+   <property name="icon">
+    <iconset resource="iconImage.qrc">
+     <normaloff>:/icon/images/input_keyboard.png</normaloff>:/icon/images/input_keyboard.png</iconset>
+   </property>
+   <property name="text">
+    <string>Input ...</string>
    </property>
   </action>
  </widget>

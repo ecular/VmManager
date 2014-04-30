@@ -45,6 +45,12 @@ private slots:
 
     void on_treeWidget_itemSelectionChanged();
 
+    void on_actionStart_Terminal_triggered();
+
+    void on_actionStart_Firefox_triggered();
+
+    void on_actionInput_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString Selected_VM_name;

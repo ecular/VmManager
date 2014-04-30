@@ -3,6 +3,7 @@
 #include "newvm.h"
 #include "xmloperator.h"
 #include <QDebug>
+#include <QInputDialog>
 #include <QMessageBox>
 #include <QTreeWidget>
 #include "virshcmd.h"
@@ -282,6 +283,10 @@ void MainWindow::ReFreshEnable(QString VM_name)
         this->ui->action_Suspend->setEnabled(false);
         this->ui->action_Shutdown->setEnabled(false);
         this->ui->action_Kill->setEnabled(false);
+
+        this->ui->actionStart_Terminal->setEnabled(false);
+        this->ui->actionInput->setEnabled(false);
+        this->ui->actionStart_Firefox->setEnabled(false);
         break;
     }
     case(1):/*run*/
@@ -291,6 +296,10 @@ void MainWindow::ReFreshEnable(QString VM_name)
         this->ui->action_Suspend->setEnabled(true);
         this->ui->action_Kill->setEnabled(true);
         this->ui->action_Setting->setEnabled(true);
+
+        this->ui->actionStart_Terminal->setEnabled(true);
+        this->ui->actionInput->setEnabled(true);
+        this->ui->actionStart_Firefox->setEnabled(true);
 
         /*disable:run,delete*/
         this->ui->action_Delete_Vm->setEnabled(false);
@@ -303,6 +312,10 @@ void MainWindow::ReFreshEnable(QString VM_name)
         this->ui->action_Kill->setEnabled(true);
         this->ui->action_Start->setEnabled(true);
         this->ui->action_Setting->setEnabled(true);
+
+        this->ui->actionStart_Terminal->setEnabled(false);
+        this->ui->actionInput->setEnabled(false);
+        this->ui->actionStart_Firefox->setEnabled(false);
 
         /*disable:shutdown,delete,suspend*/
         this->ui->action_Delete_Vm->setEnabled(false);
@@ -326,6 +339,8 @@ void MainWindow::showRightMenu(void)
     menu->addAction(this->ui->action_Kill);
     menu->addSeparator();
     menu->addAction(this->ui->action_Setting);
+    menu->addSeparator();
+    menu->addMenu(this->ui->menu_Command);
     menu->exec(cur.pos()); //关联到光标
 }
 
@@ -333,4 +348,36 @@ void MainWindow::on_treeWidget_itemSelectionChanged()
 {
     if(this->ui->treeWidget->currentItem())
         ReFreshEnable(this->ui->treeWidget->currentItem()->text(1));
+}
+
+void MainWindow::on_actionStart_Terminal_triggered()
+{
+    QString VM_name;
+    if(this->ui->treeWidget->currentItem())
+        VM_name = this->ui->treeWidget->currentItem()->text(1);
+    else
+        VM_name = Selected_VM_name;
+    system(qPrintable("send_cmd " + VM_name + " xfce4-terminal"));
+}
+
+void MainWindow::on_actionStart_Firefox_triggered()
+{
+    QString VM_name;
+    if(this->ui->treeWidget->currentItem())
+        VM_name = this->ui->treeWidget->currentItem()->text(1);
+    else
+        VM_name = Selected_VM_name;
+    system(qPrintable("send_cmd " + VM_name + " firefox"));
+}
+
+void MainWindow::on_actionInput_triggered()
+{
+    QString VM_name;
+    if(this->ui->treeWidget->currentItem())
+        VM_name = this->ui->treeWidget->currentItem()->text(1);
+    else
+        VM_name = Selected_VM_name;
+    QString cmd_line = QInputDialog::getText(this, tr("input command"), tr("Please input command:"), QLineEdit::Normal);
+    //qDebug() << cmd_line;
+    system(qPrintable("send_cmd " + VM_name + " " + cmd_line));
 }
